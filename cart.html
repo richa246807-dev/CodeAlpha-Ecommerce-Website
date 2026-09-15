@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Cart - CodeAlpha Store</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f1e8;
+            color: #222;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            background: #071a35;
+            color: white;
+            padding: 18px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #d4af37;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+
+        /* MAIN */
+
+        .container {
+
+            width: 85%;
+            max-width: 1100px;
+
+            margin: 40px auto;
+        }
+
+        h1 {
+
+            color: #071a35;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* CART */
+
+        .cart-item {
+
+            background: white;
+
+            padding: 20px;
+
+            margin-bottom: 15px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .cart-item img {
+
+            width: 120px;
+
+            height: 120px;
+
+            object-fit: cover;
+
+            border-radius: 8px;
+        }
+
+
+        .item-info {
+
+            flex: 1;
+        }
+
+        .item-info h3 {
+
+            color: #071a35;
+
+            margin-bottom: 8px;
+        }
+
+        .item-price {
+
+            font-weight: bold;
+
+            font-size: 18px;
+
+            color: #071a35;
+        }
+
+
+        /* QUANTITY */
+
+        .quantity {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .quantity button {
+
+            width: 32px;
+
+            height: 32px;
+
+            border: none;
+
+            background: #071a35;
+
+            color: white;
+
+            font-size: 18px;
+
+            border-radius: 4px;
+
+            cursor: pointer;
+        }
+
+
+        .remove-btn {
+
+            border: none;
+
+            background: #c0392b;
+
+            color: white;
+
+            padding: 9px 12px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+        }
+
+
+        /* SUMMARY */
+
+        .summary {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            margin-top: 25px;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+            max-width: 450px;
+
+            margin-left: auto;
+        }
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 15px;
+        }
+
+        .total {
+
+            border-top: 1px solid #ddd;
+
+            padding-top: 15px;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: #071a35;
+        }
+
+
+        .checkout-btn {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            background: #d4af37;
+
+            color: #071a35;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            margin-top: 15px;
+        }
+
+
+        .empty {
+
+            text-align: center;
+
+            background: white;
+
+            padding: 50px;
+
+            border-radius: 10px;
+
+        }
+
+
+        .empty a {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 12px 20px;
+
+            background: #071a35;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width: 700px) {
+
+            nav {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+            }
+
+            .cart-item {
+
+                flex-direction: column;
+
+                text-align: center;
+
+            }
+
+            .summary {
+
+                margin-left: 0;
+
+                max-width: 100%;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            CodeAlpha Store
+        </div>
+
+        <div>
+
+            <a href="home.html">
+                Home
+            </a>
+
+            <a href="orders.html">
+                My Orders
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+        <h1>
+            🛒 My Shopping Cart
+        </h1>
+
+
+        <!-- PRODUCTS -->
+
+        <div id="cartContainer"></div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="summary" id="summary">
+
+            <div class="summary-row">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <span id="subtotal">
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Delivery
+                </span>
+
+                <span id="delivery">
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <div class="summary-row total">
+
+                <span>
+                    Total
+                </span>
+
+                <span id="total">
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <button class="checkout-btn" onclick="goToCheckout()">
+                Proceed to Checkout
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        /* CART LOCAL STORAGE SE LENA */
+
+        let cart =
+            JSON.parse(localStorage.getItem("cart")) || [];
+
+
+        const cartContainer =
+            document.getElementById("cartContainer");
+
+
+
+        /* CART DISPLAY */
+
+        function displayCart() {
+
+            cartContainer.innerHTML = "";
+
+
+            if (cart.length === 0) {
+
+                cartContainer.innerHTML = `
+
+                <div class="empty">
+
+                    <h2>
+                        Your cart is empty 🛒
+                    </h2>
+
+                    <p>
+                        Add some products to continue shopping.
+                    </p>
+
+                    <a href="home.html">
+                        Continue Shopping
+                    </a>
+
+                </div>
+
+            `;
+
+                document.getElementById("summary").style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            document.getElementById("summary").style.display =
+                "block";
+
+
+            cart.forEach(function (item, index) {
+
+
+                cartContainer.innerHTML += `
+
+                <div class="cart-item">
+
+                    <img
+                        src="${item.image || 'https://via.placeholder.com/120'}"
+                        alt="${item.name}"
+                    >
+
+
+                    <div class="item-info">
+
+                        <h3>
+                            ${item.name}
+                        </h3>
+
+                        <div class="item-price">
+                            ₹${item.price}
+                        </div>
+
+                    </div>
+
+
+                    <div class="quantity">
+
+                        <button
+                            onclick="decreaseQuantity(${index})"
+                        >
+                            −
+                        </button>
+
+                        <span>
+                            ${item.quantity}
+                        </span>
+
+                        <button
+                            onclick="increaseQuantity(${index})"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        class="remove-btn"
+                        onclick="removeItem(${index})"
+                    >
+                        Remove
+                    </button>
+
+                </div>
+
+            `;
+
+            });
+
+
+            calculateTotal();
+
+        }
+
+
+
+        /* INCREASE */
+
+        function increaseQuantity(index) {
+
+            cart[index].quantity++;
+
+            saveCart();
+
+        }
+
+
+
+        /* DECREASE */
+
+        function decreaseQuantity(index) {
+
+            if (cart[index].quantity > 1) {
+
+                cart[index].quantity--;
+
+            }
+
+            saveCart();
+
+        }
+
+
+
+        /* REMOVE */
+
+        function removeItem(index) {
+
+            cart.splice(index, 1);
+
+            saveCart();
+
+        }
+
+
+
+        /* SAVE CART */
+
+        function saveCart() {
+
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
+
+            displayCart();
+
+        }
+
+
+
+        /* TOTAL */
+
+        function calculateTotal() {
+
+            let subtotal = 0;
+
+
+            cart.forEach(function (item) {
+
+                subtotal +=
+                    item.price * item.quantity;
+
+            });
+
+
+            let delivery = 0;
+
+
+            /*
+               ₹500 ya usse zyada order par
+               FREE DELIVERY
+            */
+
+            if (subtotal < 500) {
+
+                delivery = 50;
+
+            }
+
+
+            let total =
+                subtotal + delivery;
+
+
+            document.getElementById("subtotal").innerText =
+                "₹" + subtotal;
+
+
+            document.getElementById("delivery").innerText =
+                delivery === 0
+                    ? "FREE"
+                    : "₹" + delivery;
+
+
+            document.getElementById("total").innerText =
+                "₹" + total;
+
+        }
+
+
+
+        /* CHECKOUT */
+
+        function goToCheckout() {
+
+            if (cart.length === 0) {
+
+                alert("Your cart is empty!");
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "checkout.html";
+
+        }
+
+
+
+        /* START */
+
+        displayCart();
+
+    </script>
+
+
+</body>
+
+</html>

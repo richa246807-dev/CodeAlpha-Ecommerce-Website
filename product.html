@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Product Details - CodeAlpha Store</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f1e8;
+            color: #222;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            background: #071a35;
+            color: white;
+            padding: 18px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #d4af37;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        /* PRODUCT */
+
+        .product-container {
+
+            width: 85%;
+            max-width: 1100px;
+
+            margin: 50px auto;
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 15px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 50px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        /* IMAGE */
+
+        .product-image img {
+
+            width: 100%;
+
+            height: 450px;
+
+            object-fit: cover;
+
+            border-radius: 12px;
+        }
+
+        /* DETAILS */
+
+        .product-details {
+
+            padding: 20px 0;
+        }
+
+        .product-details h1 {
+
+            color: #071a35;
+
+            font-size: 35px;
+
+            margin-bottom: 15px;
+        }
+
+        .rating {
+
+            color: #d4af37;
+
+            font-size: 18px;
+
+            margin-bottom: 20px;
+        }
+
+        .description {
+
+            color: #666;
+
+            line-height: 1.6;
+
+            margin-bottom: 25px;
+        }
+
+        .price {
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #071a35;
+        }
+
+        .old-price {
+
+            color: #999;
+
+            font-size: 18px;
+
+            text-decoration: line-through;
+
+            margin-left: 10px;
+        }
+
+        /* QUANTITY */
+
+        .quantity {
+
+            margin-top: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        .quantity button {
+
+            width: 40px;
+
+            height: 40px;
+
+            border: none;
+
+            background: #071a35;
+
+            color: white;
+
+            font-size: 20px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+        }
+
+        #quantity {
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+        /* BUTTONS */
+
+        .action-buttons {
+
+            margin-top: 30px;
+
+            display: flex;
+
+            gap: 15px;
+        }
+
+        .action-buttons button {
+
+            padding: 14px 25px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            font-weight: bold;
+        }
+
+        .cart-btn {
+
+            background: #d4af37;
+
+            color: #071a35;
+        }
+
+        .buy-btn {
+
+            background: #071a35;
+
+            color: white;
+        }
+
+        .back {
+
+            display: inline-block;
+
+            margin-top: 25px;
+
+            color: #071a35;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 700px) {
+
+            .product-container {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .product-image img {
+
+                height: 300px;
+
+            }
+
+            nav {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            CodeAlpha Store
+        </div>
+
+        <div>
+
+            <a href="home.html">
+                Home
+            </a>
+
+            <a href="cart.html">
+                Cart 🛒
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- PRODUCT -->
+
+    <div class="product-container">
+
+
+        <!-- IMAGE -->
+
+        <div class="product-image">
+
+            <img id="productImage" src="" alt="Product">
+
+        </div>
+
+
+
+        <!-- DETAILS -->
+
+        <div class="product-details">
+
+            <h1 id="productName">
+                Product Name
+            </h1>
+
+
+            <div class="rating" id="rating">
+                ⭐ 4.9
+            </div>
+
+
+            <p class="description" id="description">
+                Product description
+            </p>
+
+
+            <div>
+
+                <span class="price" id="price">
+                    ₹0
+                </span>
+
+                <span class="old-price" id="oldPrice">
+                    ₹0
+                </span>
+
+            </div>
+
+
+
+            <!-- QUANTITY -->
+
+            <div class="quantity">
+
+                <button onclick="decreaseQuantity()">
+                    −
+                </button>
+
+                <span id="quantity">
+                    1
+                </span>
+
+                <button onclick="increaseQuantity()">
+                    +
+                </button>
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="action-buttons">
+
+                <button class="cart-btn" onclick="addToCart()">
+                    Add to Cart
+                </button>
+
+
+                <button class="buy-btn" onclick="buyNow()">
+                    Buy Now
+                </button>
+
+            </div>
+
+
+            <a href="home.html" class="back">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        /*
+           Abhi hum product ko simple JavaScript
+           object se load kar rahe hain.
+    
+           Firebase baad me connect karenge.
+        */
+
+
+        const products = {
+
+            "Nike Air Max": {
+
+                name: "Nike Air Max",
+
+                image:
+                    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",
+
+                price: 7999,
+
+                oldPrice: 9999,
+
+                rating: "⭐ 4.9 (54)",
+
+                description:
+                    "Premium comfortable running shoes. Perfect for daily use, running and sports activities."
+
+            },
+
+
+            "iPhone 15": {
+
+                name: "iPhone 15",
+
+                image:
+                    "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=800",
+
+                price: 59999,
+
+                oldPrice: 69999,
+
+                rating: "⭐ 4.8 (125)",
+
+                description:
+                    "Powerful smartphone with premium design, excellent camera and smooth performance."
+
+            },
+
+
+            "Beauty Kit": {
+
+                name: "Beauty Kit",
+
+                image:
+                    "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800",
+
+                price: 1499,
+
+                oldPrice: 1999,
+
+                rating: "⭐ 4.7 (89)",
+
+                description:
+                    "Complete premium beauty care kit for your daily skincare and beauty routine."
+
+            }
+
+        };
+
+
+
+        /* PRODUCT SELECT KARNA */
+
+        const productName =
+            localStorage.getItem("selectedProduct") || "Nike Air Max";
+
+
+        const product =
+            products[productName];
+
+
+
+        /* SCREEN PAR DATA */
+
+        document.getElementById("productName").innerText =
+            product.name;
+
+
+        document.getElementById("productImage").src =
+            product.image;
+
+
+        document.getElementById("price").innerText =
+            "₹" + product.price;
+
+
+        document.getElementById("oldPrice").innerText =
+            "₹" + product.oldPrice;
+
+
+        document.getElementById("rating").innerText =
+            product.rating;
+
+
+        document.getElementById("description").innerText =
+            product.description;
+
+
+
+        /* QUANTITY */
+
+        let quantity = 1;
+
+
+        function increaseQuantity() {
+
+            quantity++;
+
+            document.getElementById("quantity").innerText =
+                quantity;
+
+        }
+
+
+        function decreaseQuantity() {
+
+            if (quantity > 1) {
+
+                quantity--;
+
+            }
+
+            document.getElementById("quantity").innerText =
+                quantity;
+
+        }
+
+
+
+        /* ADD TO CART */
+
+        function addToCart() {
+
+            let cart =
+                JSON.parse(localStorage.getItem("cart")) || [];
+
+
+            cart.push({
+
+                name: product.name,
+
+                price: product.price,
+
+                quantity: quantity,
+
+                image: product.image
+
+            });
+
+
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
+
+
+            alert("Product added to cart!");
+
+        }
+
+
+
+        /* BUY NOW */
+
+        function buyNow() {
+
+            addToCart();
+
+            window.location.href =
+                "checkout.html";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

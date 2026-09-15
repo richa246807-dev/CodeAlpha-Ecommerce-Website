@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout - CodeAlpha Ecommerce</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: #f5f1e8;
+
+            color: #222;
+
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+
+            background: #07152f;
+
+            color: white;
+
+            padding: 18px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+        .logo {
+
+            color: #d4af37;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 25px;
+
+            align-items: center;
+
+        }
+
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: #d4af37;
+
+        }
+
+
+        .logout {
+
+            background: #d4af37;
+
+            color: #07152f;
+
+            border: none;
+
+            padding: 9px 15px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+
+            width: 90%;
+
+            max-width: 1100px;
+
+            margin: 40px auto;
+
+        }
+
+
+        h1 {
+
+            color: #07152f;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .checkout-layout {
+
+            display: grid;
+
+            grid-template-columns: 2fr 1fr;
+
+            gap: 25px;
+
+        }
+
+
+        .box {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .box h2 {
+
+            color: #07152f;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: bold;
+
+            color: #07152f;
+
+        }
+
+
+        input,
+        textarea,
+        select {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 6px;
+
+            font-size: 15px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        textarea {
+
+            height: 100px;
+
+            resize: none;
+
+        }
+
+
+        /* =========================
+           PAYMENT
+        ========================= */
+
+        .payment-option {
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .payment-option label {
+
+            display: inline;
+
+            font-weight: normal;
+
+            margin-left: 8px;
+
+        }
+
+
+        .payment-option input {
+
+            width: auto;
+
+            margin: 0;
+
+        }
+
+
+        /* =========================
+           SUMMARY
+        ========================= */
+
+        .summary-item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 15px;
+
+            color: #555;
+
+        }
+
+
+        .total {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            border-top: 1px solid #ddd;
+
+            padding-top: 15px;
+
+            margin-top: 15px;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            color: #07152f;
+
+        }
+
+
+        .place-btn {
+
+            width: 100%;
+
+            background: #d4af37;
+
+            color: #07152f;
+
+            border: none;
+
+            padding: 15px;
+
+            border-radius: 6px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 20px;
+
+        }
+
+
+        .place-btn:hover {
+
+            background: #b8860b;
+
+        }
+
+
+        /* =========================
+           SUCCESS
+        ========================= */
+
+        .success {
+
+            background: white;
+
+            max-width: 600px;
+
+            margin: 70px auto;
+
+            padding: 50px;
+
+            text-align: center;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.15);
+
+        }
+
+
+        .success h2 {
+
+            color: #07152f;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .success p {
+
+            color: #555;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .orders-btn {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 12px 20px;
+
+            background: #d4af37;
+
+            color: #07152f;
+
+            text-decoration: none;
+
+            border-radius: 6px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            nav {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+            }
+
+
+            .nav-links {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+            }
+
+
+            .checkout-layout {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav>
+
+
+        <div class="logo">
+
+            CODEALPHA ECOMMERCE
+
+        </div>
+
+
+        <div class="nav-links">
+
+
+            <a href="home.html">
+                Home
+            </a>
+
+
+            <a href="cart.html">
+                🛒 Cart
+            </a>
+
+
+            <a href="orders.html">
+                My Orders
+            </a>
+
+
+            <button class="logout" id="logoutBtn">
+
+                Logout
+
+            </button>
+
+
+        </div>
+
+
+    </nav>
+
+
+
+    <!-- =========================
+         CHECKOUT
+    ========================= -->
+
+    <div class="container" id="checkoutContainer">
+
+
+        <h1>
+            Checkout
+        </h1>
+
+
+        <div class="checkout-layout">
+
+
+            <!-- =====================
+                 CUSTOMER DETAILS
+            ====================== -->
+
+            <div class="box">
+
+
+                <h2>
+                    Delivery Details
+                </h2>
+
+
+                <label>
+                    Full Name
+                </label>
+
+                <input type="text" id="name" placeholder="Enter your name">
+
+
+                <label>
+                    Mobile Number
+                </label>
+
+                <input type="text" id="mobile" placeholder="Enter 10 digit mobile number">
+
+
+                <label>
+                    Address
+                </label>
+
+                <textarea id="address" placeholder="Enter your full address"></textarea>
+
+
+                <label>
+                    City
+                </label>
+
+                <input type="text" id="city" placeholder="Enter your city">
+
+
+                <label>
+                    Pincode
+                </label>
+
+                <input type="text" id="pincode" placeholder="Enter 6 digit pincode">
+
+
+                <!-- PAYMENT -->
+
+                <h2 style="margin-top:15px;">
+                    Payment Method
+                </h2>
+
+
+                <div class="payment-option">
+
+                    <input type="radio" name="payment" value="Cash on Delivery" checked>
+
+                    <label>
+                        Cash on Delivery
+                    </label>
+
+                </div>
+
+
+                <div class="payment-option">
+
+                    <input type="radio" name="payment" value="UPI">
+
+                    <label>
+                        UPI
+                    </label>
+
+                </div>
+
+
+                <div class="payment-option">
+
+                    <input type="radio" name="payment" value="Card">
+
+                    <label>
+                        Card
+                    </label>
+
+                </div>
+
+
+                <p id="error" style="color:red; margin-top:15px;">
+                </p>
+
+
+                <button class="place-btn" id="placeOrderBtn">
+
+                    Place Order
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =====================
+                 ORDER SUMMARY
+            ====================== -->
+
+            <div class="box">
+
+
+                <h2>
+                    Order Summary
+                </h2>
+
+
+                <div id="products">
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span id="subtotal">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <span>
+                        Delivery
+                    </span>
+
+                    <span id="delivery">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span id="total">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         FIREBASE
+    ========================= -->
+
+    <script type="module">
+
+
+        /* =========================
+           FIREBASE IMPORT
+        ========================= */
+
+        import { initializeApp }
+
+            from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+        import {
+
+            getAuth,
+
+            onAuthStateChanged,
+
+            signOut
+
+        }
+
+            from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+        import {
+
+            getFirestore,
+
+            collection,
+
+            addDoc,
+
+            serverTimestamp
+
+        }
+
+            from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+        /* =========================
+           FIREBASE CONFIG
+        ========================= */
+
+        const firebaseConfig = {
+
+            // SAME WORKING FIREBASE CONFIG
+
+        };
+
+
+
+        /* =========================
+           FIREBASE START
+        ========================= */
+
+        const app =
+            initializeApp(firebaseConfig);
+
+
+        const auth =
+            getAuth(app);
+
+
+        const db =
+            getFirestore(app);
+
+
+
+        /* =========================
+           VARIABLES
+        ========================= */
+
+        let currentUser = null;
+
+        let cart = [];
+
+        let subtotal = 0;
+
+        let deliveryCharge = 0;
+
+        let total = 0;
+
+
+
+        /* =========================
+           GET CART
+        ========================= */
+
+        cart =
+            JSON.parse(
+                localStorage.getItem("cart")
+            ) || [];
+
+
+
+        /* =========================
+           CHECK LOGIN
+        ========================= */
+
+        onAuthStateChanged(
+            auth,
+            function (user) {
+
+
+                if (user) {
+
+                    currentUser = user;
+
+                    showOrderSummary();
+
+                }
+
+                else {
+
+                    window.location.href =
+                        "index.html";
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================
+           SHOW ORDER SUMMARY
+        ========================= */
+
+        function showOrderSummary() {
+
+
+            /* EMPTY CART */
+
+            if (cart.length == 0) {
+
+                window.location.href =
+                    "cart.html";
+
+                return;
+
+            }
+
+
+            let productsHTML = "";
+
+
+            subtotal = 0;
+
+
+
+            /* LOOP PRODUCTS */
+
+            for (
+                let i = 0;
+                i < cart.length;
+                i++
+            ) {
+
+
+                const item =
+                    cart[i];
+
+
+                const itemTotal =
+                    item.price *
+                    item.quantity;
+
+
+                subtotal =
+                    subtotal +
+                    itemTotal;
+
+
+
+                productsHTML += `
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        margin-bottom:15px;
+                        padding-bottom:10px;
+                        border-bottom:1px solid #eee;
+                    ">
+
+                        <span>
+
+                            ${item.name}
+
+                            <br>
+
+                            <small>
+                                Quantity: ${item.quantity}
+                            </small>
+
+                        </span>
+
+
+                        <strong>
+
+                            ₹${itemTotal}
+
+                        </strong>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            document.getElementById(
+                "products"
+            ).innerHTML =
+                productsHTML;
+
+
+
+            /* DELIVERY */
+
+            if (subtotal >= 500) {
+
+                deliveryCharge = 0;
+
+            }
+
+            else {
+
+                deliveryCharge = 50;
+
+            }
+
+
+
+            /* TOTAL */
+
+            total =
+                subtotal +
+                deliveryCharge;
+
+
+
+            /* SHOW VALUES */
+
+            document.getElementById(
+                "subtotal"
+            ).innerText =
+                "₹" + subtotal;
+
+
+            document.getElementById(
+                "delivery"
+            ).innerText =
+                deliveryCharge == 0
+                    ? "FREE"
+                    : "₹" + deliveryCharge;
+
+
+            document.getElementById(
+                "total"
+            ).innerText =
+                "₹" + total;
+
+        }
+
+
+
+        /* =========================
+           PLACE ORDER
+        ========================= */
+
+        document.getElementById(
+            "placeOrderBtn"
+        ).addEventListener(
+            "click",
+            async function () {
+
+
+                const name =
+                    document.getElementById(
+                        "name"
+                    ).value.trim();
+
+
+                const mobile =
+                    document.getElementById(
+                        "mobile"
+                    ).value.trim();
+
+
+                const address =
+                    document.getElementById(
+                        "address"
+                    ).value.trim();
+
+
+                const city =
+                    document.getElementById(
+                        "city"
+                    ).value.trim();
+
+
+                const pincode =
+                    document.getElementById(
+                        "pincode"
+                    ).value.trim();
+
+
+                const error =
+                    document.getElementById(
+                        "error"
+                    );
+
+
+
+                /* VALIDATION */
+
+                if (
+                    name == "" ||
+                    mobile == "" ||
+                    address == "" ||
+                    city == "" ||
+                    pincode == ""
+                ) {
+
+                    error.innerText =
+                        "Please fill all details.";
+
+                    return;
+
+                }
+
+
+
+                if (
+                    mobile.length != 10 ||
+                    isNaN(mobile)
+                ) {
+
+                    error.innerText =
+                        "Enter a valid 10 digit mobile number.";
+
+                    return;
+
+                }
+
+
+
+                if (
+                    pincode.length != 6 ||
+                    isNaN(pincode)
+                ) {
+
+                    error.innerText =
+                        "Enter a valid 6 digit pincode.";
+
+                    return;
+
+                }
+
+
+                error.innerText =
+                    "Placing order...";
+
+
+
+                /* PAYMENT */
+
+                const payment =
+                    document.querySelector(
+                        'input[name="payment"]:checked'
+                    ).value;
+
+
+
+                /* =========================
+                   ORDER DATA
+                ========================= */
+
+                const orderData = {
+
+                    userId:
+                        currentUser.uid,
+
+                    userEmail:
+                        currentUser.email,
+
+                    customerName:
+                        name,
+
+                    mobile:
+                        mobile,
+
+                    address:
+                        address,
+
+                    city:
+                        city,
+
+                    pincode:
+                        pincode,
+
+                    products:
+                        cart,
+
+                    subtotal:
+                        subtotal,
+
+                    deliveryCharge:
+                        deliveryCharge,
+
+                    totalAmount:
+                        total,
+
+                    paymentMethod:
+                        payment,
+
+                    orderStatus:
+                        "Order Placed",
+
+                    createdAt:
+                        serverTimestamp()
+
+                };
+
+
+
+                try {
+
+
+                    /* SAVE ORDER */
+
+                    const orderRef =
+                        await addDoc(
+
+                            collection(
+                                db,
+                                "orders"
+                            ),
+
+                            orderData
+
+                        );
+
+
+
+                    /* CLEAR CART */
+
+                    localStorage.removeItem(
+                        "cart"
+                    );
+
+
+
+                    /* SUCCESS PAGE */
+
+                    document.getElementById(
+                        "checkoutContainer"
+                    ).innerHTML = `
+
+                        <div class="success">
+
+                            <h2>
+                                🎉 Order Placed Successfully!
+                            </h2>
+
+                            <p>
+                                Thank you for shopping with us.
+                            </p>
+
+                            <p>
+                                Your Order ID is:
+                            </p>
+
+                            <p style="
+                                font-weight:bold;
+                                color:#07152f;
+                                word-break:break-all;
+                            ">
+
+                                ${orderRef.id}
+
+                            </p>
+
+
+                            <a
+                                href="orders.html"
+                                class="orders-btn">
+
+                                View My Orders
+
+                            </a>
+
+                        </div>
+
+                    `;
+
+
+                }
+
+
+                catch (error) {
+
+
+                    console.log(error);
+
+
+                    document.getElementById(
+                        "error"
+                    ).innerText =
+                        "Order could not be placed. Please try again.";
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+        document.getElementById(
+            "logoutBtn"
+        ).addEventListener(
+            "click",
+            function () {
+
+
+                signOut(auth)
+                    .then(function () {
+
+
+                        window.location.href =
+                            "index.html";
+
+
+                    });
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

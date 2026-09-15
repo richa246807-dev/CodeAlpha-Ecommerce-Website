@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout - CodeAlpha Store</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f1e8;
+            color: #222;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            background: #071a35;
+            color: white;
+            padding: 18px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #d4af37;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+
+        /* MAIN */
+
+        .container {
+
+            width: 85%;
+            max-width: 1100px;
+
+            margin: 40px auto;
+
+            display: grid;
+
+            grid-template-columns: 1.5fr 1fr;
+
+            gap: 30px;
+        }
+
+
+        /* BOX */
+
+        .box {
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+
+        h1 {
+
+            color: #071a35;
+
+            margin-bottom: 25px;
+        }
+
+        h2 {
+
+            color: #071a35;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* FORM */
+
+        label {
+
+            display: block;
+
+            margin-top: 15px;
+
+            margin-bottom: 6px;
+
+            font-weight: bold;
+        }
+
+
+        input,
+        textarea {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 6px;
+
+            font-size: 15px;
+        }
+
+
+        textarea {
+
+            height: 90px;
+
+            resize: none;
+        }
+
+
+        /* PAYMENT */
+
+        .payment {
+
+            margin-top: 25px;
+        }
+
+        .payment-option {
+
+            border: 1px solid #ddd;
+
+            padding: 14px;
+
+            margin-bottom: 10px;
+
+            border-radius: 6px;
+        }
+
+        .payment-option input {
+
+            width: auto;
+
+            margin-right: 8px;
+        }
+
+
+        /* ORDER SUMMARY */
+
+        .summary-item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 15px;
+
+            color: #555;
+        }
+
+
+        .total {
+
+            border-top: 1px solid #ddd;
+
+            padding-top: 15px;
+
+            margin-top: 15px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: #071a35;
+        }
+
+
+        .place-order {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 25px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #d4af37;
+
+            color: #071a35;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .place-order:hover {
+
+            background: #071a35;
+
+            color: white;
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width: 700px) {
+
+            nav {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+            }
+
+            .container {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            CodeAlpha Store
+        </div>
+
+        <div>
+
+            <a href="home.html">
+                Home
+            </a>
+
+            <a href="cart.html">
+                Cart 🛒
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+
+        <!-- CUSTOMER DETAILS -->
+
+        <div class="box">
+
+            <h1>
+                Checkout
+            </h1>
+
+
+            <h2>
+                Customer Details
+            </h2>
+
+
+            <form id="checkoutForm">
+
+
+                <label>
+                    Full Name
+                </label>
+
+                <input type="text" id="name" placeholder="Enter your name" required>
+
+
+                <label>
+                    Mobile Number
+                </label>
+
+                <input type="tel" id="mobile" placeholder="Enter 10 digit mobile number" maxlength="10" required>
+
+
+                <label>
+                    Address
+                </label>
+
+                <textarea id="address" placeholder="Enter your complete address" required></textarea>
+
+
+                <label>
+                    City
+                </label>
+
+                <input type="text" id="city" placeholder="Enter city" required>
+
+
+                <label>
+                    Pincode
+                </label>
+
+                <input type="text" id="pincode" placeholder="Enter 6 digit pincode" maxlength="6" required>
+
+
+
+                <!-- PAYMENT -->
+
+                <div class="payment">
+
+                    <h2>
+                        Payment Method
+                    </h2>
+
+
+                    <div class="payment-option">
+
+                        <label>
+
+                            <input type="radio" name="payment" value="Cash on Delivery" checked>
+
+                            Cash on Delivery
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="payment-option">
+
+                        <label>
+
+                            <input type="radio" name="payment" value="UPI">
+
+                            UPI
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="payment-option">
+
+                        <label>
+
+                            <input type="radio" name="payment" value="Card">
+
+                            Credit / Debit Card
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+
+                <button type="submit" class="place-order">
+                    Place Order
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+
+        <!-- ORDER SUMMARY -->
+
+        <div class="box">
+
+            <h2>
+                Order Summary
+            </h2>
+
+
+            <div id="orderItems"></div>
+
+
+            <div class="summary-item">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <span id="subtotal">
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>
+                    Delivery
+                </span>
+
+                <span id="delivery">
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <div class="total">
+
+                <span>
+                    Total
+                </span>
+
+                <span id="total">
+                    ₹0
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+
+        /* CART GET KARNA */
+
+        let cart =
+            JSON.parse(localStorage.getItem("cart")) || [];
+
+
+        /* AGAR CART EMPTY HAI */
+
+        if (cart.length === 0) {
+
+            alert("Your cart is empty!");
+
+            window.location.href =
+                "home.html";
+
+        }
+
+
+
+        /* ORDER ITEMS */
+
+        const orderItems =
+            document.getElementById("orderItems");
+
+
+        cart.forEach(function (item) {
+
+            orderItems.innerHTML += `
+
+            <div class="summary-item">
+
+                <span>
+                    ${item.name} × ${item.quantity}
+                </span>
+
+                <span>
+                    ₹${item.price * item.quantity}
+                </span>
+
+            </div>
+
+        `;
+
+        });
+
+
+
+        /* TOTAL */
+
+        let subtotal = 0;
+
+
+        cart.forEach(function (item) {
+
+            subtotal +=
+                item.price * item.quantity;
+
+        });
+
+
+        let delivery = 0;
+
+
+        if (subtotal < 500) {
+
+            delivery = 50;
+
+        }
+
+
+        let total =
+            subtotal + delivery;
+
+
+        document.getElementById("subtotal").innerText =
+            "₹" + subtotal;
+
+
+        document.getElementById("delivery").innerText =
+            delivery === 0
+                ? "FREE"
+                : "₹" + delivery;
+
+
+        document.getElementById("total").innerText =
+            "₹" + total;
+
+
+
+        /* PLACE ORDER */
+
+        document.getElementById("checkoutForm")
+            .addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document.getElementById("name").value;
+
+
+                const mobile =
+                    document.getElementById("mobile").value;
+
+
+                const address =
+                    document.getElementById("address").value;
+
+
+                const city =
+                    document.getElementById("city").value;
+
+
+                const pincode =
+                    document.getElementById("pincode").value;
+
+
+                const payment =
+                    document.querySelector(
+                        'input[name="payment"]:checked'
+                    ).value;
+
+
+
+                /* MOBILE CHECK */
+
+                if (mobile.length !== 10) {
+
+                    alert(
+                        "Please enter a valid 10 digit mobile number."
+                    );
+
+                    return;
+
+                }
+
+
+
+                /* PINCODE CHECK */
+
+                if (pincode.length !== 6) {
+
+                    alert(
+                        "Please enter a valid 6 digit pincode."
+                    );
+
+                    return;
+
+                }
+
+
+
+                /*
+                   Abhi order ko simple localStorage
+                   me save kar rahe hain.
+        
+                   Firebase next step me add karenge.
+                */
+
+                const order = {
+
+                    orderId:
+                        "ORD" + Date.now(),
+
+                    customerName: name,
+
+                    mobile: mobile,
+
+                    address: address,
+
+                    city: city,
+
+                    pincode: pincode,
+
+                    products: cart,
+
+                    subtotal: subtotal,
+
+                    delivery: delivery,
+
+                    total: total,
+
+                    paymentMethod: payment,
+
+                    status: "Order Placed",
+
+                    date:
+                        new Date().toLocaleString()
+
+                };
+
+
+                localStorage.setItem(
+                    "latestOrder",
+                    JSON.stringify(order)
+                );
+
+
+                /* CART EMPTY */
+
+                localStorage.removeItem("cart");
+
+
+                alert(
+                    "Order placed successfully! 🎉"
+                );
+
+
+                /* ORDERS PAGE */
+
+                window.location.href =
+                    "orders.html";
+
+            });
+
+    </script>
+
+
+</body>
+
+</html>
